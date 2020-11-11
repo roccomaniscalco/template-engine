@@ -9,10 +9,129 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const Choices = require("inquirer/lib/objects/choices");
+const Employee = require("./lib/Employee");
 
+let teamName;
+let employeeType;
+let employeeCount = 0;
+const employees = [];
 
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
+promptTeamName = () => {
+  inquirer
+    .prompt([
+      {
+        name: "name",
+        message: "Team Name:",
+      },
+    ])
+    .then((team) => {
+      teamName = team.name;
+      promptEmployeeType();
+    });
+};
+
+promptEmployeeType = () => {
+  console.log("");
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "type",
+        message: "Employee Type:",
+        choices: [Engineer, Intern, Manager, new inquirer.Separator(), "Exit"],
+      },
+    ])
+    .then((employee) => {
+      employeeType = employee.type;
+      if (employeeType != "Exit") promptEmployeeInfo();
+    });
+};
+
+promptEmployeeInfo = () => {
+  inquirer
+    .prompt([
+      {
+        name: "name",
+        message: `${employeeType} Name:`,
+      },
+      {
+        name: "email",
+        message: `${employeeType} Email:`,
+      },
+    ])
+    .then((genericInfo) => {
+      switch (employeeType) {
+        case "Engineer":
+          inquirer
+            .prompt([
+              {
+                name: "github",
+                message: "Engineer Github:",
+              },
+            ])
+            .then((specificInfo) => {
+              employeeCount++;
+              employees.push(
+                new Engineer(
+                  genericInfo.name,
+                  employeeCount,
+                  genericInfo.email,
+                  specificInfo.github
+                )
+              );
+              promptEmployeeType();
+            });
+
+          break;
+        case "Intern":
+          inquirer
+            .prompt([
+              {
+                name: "school",
+                message: "Intern School:",
+              },
+            ])
+            .then((specificInfo) => {
+              employeeCount++;
+              employees.push(
+                new Intern(
+                  genericInfo.name,
+                  employeeCount,
+                  genericInfo.email,
+                  specificInfo.school
+                )
+              );
+              promptEmployeeType();
+            });
+
+          break;
+        case "Manager":
+          inquirer
+            .prompt([
+              {
+                type: "number",
+                name: "office",
+                message: "Manager Office #:",
+              },
+            ])
+            .then((specificInfo) => {
+              employeeCount++;
+              employees.push(
+                new Manager(
+                  genericInfo.name,
+                  employeeCount,
+                  genericInfo.email,
+                  specificInfo.office
+                )
+              );
+              promptEmployeeType();
+            });
+      }
+    });
+};
+
+promptTeamName();
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
