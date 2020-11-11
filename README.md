@@ -1,4 +1,4 @@
-!(shield)[https://img.shields.io/badge/license-MIT-blue](https://opensource.org/licenses/MIT)
+![shield](https://img.shields.io/badge/license-MIT-blue)(https://opensource.org/licenses/MIT)
 
 # Employee Template Engine
 
@@ -14,8 +14,8 @@ Team management is an essential component of any successful project. The Employe
 ## Usage
 
 - Must have node.js and required dependencies installed.
-- Run app.js in (inquirer)[https://www.npmjs.com/package/inquirer#support] supported terminals.
+- Run app.js in [inquirer](https://www.npmjs.com/package/inquirer#support) supported terminals.
 
 ## License
 
-Licensed under the (MIT)[https://opensource.org/licenses/MIT] license.
+Licensed under the [MIT](https://opensource.org/licenses/MIT) license.
