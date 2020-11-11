@@ -1,4 +1,4 @@
-![shield](https://img.shields.io/badge/license-MIT-blue)(https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # Employee Template Engine
 
@@ -8,7 +8,7 @@ Team management is an essential component of any successful project. The Employe
 
 ## Installation
 
-- head over to the (template-engine repository)[https://github.com/roccomaniscalco/template-engine]
+- head over to the [template-engine repository](https://github.com/roccomaniscalco/template-engine)
 - Press the green _code_ button and select method of download
 
 ## Usage
