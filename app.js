@@ -11,7 +11,7 @@ let employeeCount = 0;
 const employees = [];
 
 generateHTML = () => {
-  const content = render(employees);
+  const content = render(employees, teamName);
   fs.writeFile("./output/team.html", content, (err) => {
     if (err) throw err;
     console.log();
